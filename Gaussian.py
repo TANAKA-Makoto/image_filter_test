@@ -27,8 +27,8 @@ else:
     dst_folder = os.path.dirname(img_path)
     namelist = dst_name.split(".")
     dst_name = f'{namelist[0]}-G({windowX},{windowY},{sigmaX},{sigmaY}).{namelist[1]}'
-    dst_path = dst_folder + dst_name
-    dst_path = dst_path[1:] if dst_path[0] == "." else dst_path
+    dst_path = dst_folder + "/" + dst_name
+    dst_path = dst_path[1:] if dst_path[0] == "." and "/" not in dst_path else dst_path
 
 
 print(dst_path)
