@@ -15,14 +15,8 @@ parser.add_argument("--sigmaY", type=int)
 args = parser.parse_args()
 img_path = args.img_path
 dst_path = args.dst_path
-if args.kernelX:
-    kernelX = args.kernelX
-else:
-    kernelX = 5
-if args.kernelY:
-    kernelY = args.kernelY
-else:
-    kernelY = 5
+kernelX = args.kernelX if args.kernelX else 5
+kernelY = args.kernelY if args.kernelY else 5
 
 kernel_in = (kernelX,kernelY)
 print(f'window:{kernel_in}\n---start---')
