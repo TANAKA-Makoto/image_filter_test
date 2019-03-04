@@ -7,16 +7,17 @@ import numpy as np
 parser = argparse.ArgumentParser()
 parser.add_argument("img_path", type=str)
 parser.add_argument("--dst_path", type=str)
+parser.add_argument("--kernel", type=int)
 parser.add_argument("--kernelX", type=int)
 parser.add_argument("--kernelY", type=int)
-parser.add_argument("--sigmaX", type=int)
-parser.add_argument("--sigmaY", type=int)
-
 
 args = parser.parse_args()
 img_path = args.img_path
-kernelX = args.kernelX if args.kernelX else 5
-kernelY = args.kernelY if args.kernelY else 5
+kernelX = kernelY = args.kernel if args.kernel else None
+kernelX = args.kernelX if args.kernelX else kernelX
+kernelY = args.kernelY if args.kernelY else kernelY
+kernelX = kernelX if kernelX is not None else 5
+kernelY = kernelY if kernelY is not None else 5
 if args.dst_path:
     dst_path = args.dst_path
 else:

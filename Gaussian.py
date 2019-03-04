@@ -8,18 +8,27 @@ import numpy as np
 parser = argparse.ArgumentParser()
 parser.add_argument("img_path", type=str)
 parser.add_argument("--dst_path", type=str)
+parser.add_argument("--window", type=int)
 parser.add_argument("--windowX", type=int)
 parser.add_argument("--windowY", type=int)
+parser.add_argument("--sigma", type=int)
 parser.add_argument("--sigmaX", type=int)
 parser.add_argument("--sigmaY", type=int)
 
 
 args = parser.parse_args()
 img_path = args.img_path
-windowX = args.windowX if args.windowX else 125
-windowY = args.windowY if args.windowY else 125
-sigmaX = args.sigmaX if args.sigmaX else 1000
-sigmaY = args.sigmaY if args.sigmaY else 1000
+windowX = windowY = args.window if args.window else None
+windowX = args.windowX if args.windowX else windowX
+windowY = args.windowY if args.windowY else windowY
+sigmaX = sigmaY = args.sigma if args.sigma else None
+sigmaX = args.sigmaX if args.sigmaX else sigmaX
+sigmaY = args.sigmaY if args.sigmaY else sigmaY
+
+windowX = windowX if windowX is not None else 101
+windowY = windowY if windowY is not None else 101
+sigmaX = sigmaX if sigmaX is not None else 20
+sigmaY = sigmaY if sigmaY is not None else 20
 if args.dst_path:
     dst_path = args.dst_path
 else:
