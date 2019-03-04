@@ -5,6 +5,7 @@ opencv-python
 ### Gaussian
 `./Gaussian.py 'sours_path' 'dst_path' [--OPTIONS]`
 #### option
-+ --window '(100,100)'
++ --windowX 100
++ --windowY 100
 + --sigmaX 1000
 + --sigmaY 1000
