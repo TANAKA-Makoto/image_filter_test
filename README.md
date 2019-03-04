@@ -9,3 +9,8 @@ opencv-python
 + --windowY 100
 + --sigmaX 1000
 + --sigmaY 1000
+### Erosion
+`./Erosion.py 'sours_path' 'dst_path' [--OPTIONS]`
+#### option
++ --kernelX 5
++ --kernelY 5
