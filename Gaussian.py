@@ -1,9 +1,12 @@
 #!/usr/bin/python3
+import sys
 import cv2
 import numpy as np
 
-img_path = './img/map_1_scan_allpoint_50m_cleaned.png'
-dst_path = 'map_1_scan_allpoint_50m_cost125_1000_new.png'
+name = sys.argv[0]
+img_path = sys.argv[1]
+dst_path = sys.argv[2]
+
 img = cv2.imread(img_path)
 print(f'{img_path} is loaded')
 
