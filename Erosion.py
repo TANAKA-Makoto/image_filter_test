@@ -17,12 +17,17 @@ parser.add_argument("--kernelX", type=int)
 parser.add_argument("--kernelY", type=int)
 
 args = parser.parse_args()
-img_path = args.img_path
+if hasattr(args, 'img_path'):
+    img_path = args.img_path
+else:
+    img_path = sys.stdin.readline()[:-1]
+
 kernelX = kernelY = args.kernel if args.kernel else None
 kernelX = args.kernelX if args.kernelX else kernelX
 kernelY = args.kernelY if args.kernelY else kernelY
 kernelX = kernelX if kernelX is not None else 5
 kernelY = kernelY if kernelY is not None else 5
+cmd = bool(args.cmd)
 if args.normal_dst:
     dst_path = args.normal_dst
 else:
@@ -31,7 +36,6 @@ else:
     namelist = dst_name.split(".")
     dst_name = f'{namelist[0]}-E({kernelX},{kernelY}).{namelist[1]}'
     dst_path = dst_folder + dst_name
-cmd = bool(args.cmd)
 
 
 def stdout(msg, isinfo=True):

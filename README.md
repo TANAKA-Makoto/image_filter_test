@@ -8,16 +8,16 @@ require either `--append_dst` or `--normal_dst`.
 ### Gaussian
 `./Gaussian.py 'source_path' (--append_dst|--normal_dst) [--OPTIONS]`
 #### option
-+ --window
-+ --windowX 100
-+ --windowY 100
-+ --sigmaX 1000
-+ --sigmaY 1000
++ --window <int>
++ --windowX <int>
++ --windowY <int>
++ --sigmaX <int>
++ --sigmaY <int>
 ### Erosion
 `./Erosion.py 'source_path' (--append_dst|--normal_dst) [--OPTIONS]`
 #### option
-+ --kernel
-+ --kernelX 5
-+ --kernelY 5
++ --kernel <int>
++ --kernelX <int>
++ --kernelY <int>
 ## Rotation
 `./Rotation.py 'source_path' angle<int> (--append_dst|--normal_dst)`
