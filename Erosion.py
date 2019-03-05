@@ -1,14 +1,17 @@
 #!/usr/bin/python3
 import os
+import sys
 import argparse
 import cv2
 import numpy as np
 
 parser = argparse.ArgumentParser()
 group = parser.add_mutually_exclusive_group()
-parser.add_argument("img_path", type=str)
+if sys.stdin.isatty():
+    parser.add_argument("img_path", type=str)
 group.add_argument("--append_dst", type=str)
 group.add_argument("--normal_dst", type=str)
+parser.add_argument("--cmd", help="optional", action="store_false")
 parser.add_argument("--kernel", type=int)
 parser.add_argument("--kernelX", type=int)
 parser.add_argument("--kernelY", type=int)
@@ -28,15 +31,29 @@ else:
     namelist = dst_name.split(".")
     dst_name = f'{namelist[0]}-E({kernelX},{kernelY}).{namelist[1]}'
     dst_path = dst_folder + dst_name
+cmd = bool(args.cmd)
 
-kernel_in = (kernelX,kernelY)
-print(f'kernel:{kernel_in}\n---start---')
-img = cv2.imread(img_path)
-print(f'{img_path} is loaded')
-kernel = np.ones(kernel_in, np.uint8)
-dst = cv2.erode(img, kernel, iterations=1)
-print('filter done')
 
-cv2.imwrite(dst_path, dst)
-print(f'output to {dst_path}')
-print('---end---')
+def stdout(msg, isinfo):
+    if (cmd or isinfo) and not (cmd and isinfo):
+        pass
+    else:
+        print(msg)
+
+
+def main():
+    kernel_in = (kernelX,kernelY)
+    stdout(f'kernel:{kernel_in}\n---start---', True)
+    img = cv2.imread(img_path)
+    stdout(f'{img_path} is loaded', True)
+    kernel = np.ones(kernel_in, np.uint8)
+    dst = cv2.erode(img, kernel, iterations=1)
+    stdout('filter done', True)
+    cv2.imwrite(dst_path, dst)
+    stdout(f'output to {dst_path}', True)
+    stdout('---end---', True)
+    stdout(dst_path, False)
+
+
+if __name__ == '__main__':
+    main()
