@@ -34,7 +34,7 @@ else:
 cmd = bool(args.cmd)
 
 
-def stdout(msg, isinfo):
+def stdout(msg, isinfo=True):
     if (cmd or isinfo) and not (cmd and isinfo):
         pass
     else:
@@ -43,15 +43,15 @@ def stdout(msg, isinfo):
 
 def main():
     kernel_in = (kernelX,kernelY)
-    stdout(f'kernel:{kernel_in}\n---start---', True)
+    stdout(f'kernel:{kernel_in}\n---start---')
     img = cv2.imread(img_path)
-    stdout(f'{img_path} is loaded', True)
+    stdout(f'{img_path} is loaded')
     kernel = np.ones(kernel_in, np.uint8)
     dst = cv2.erode(img, kernel, iterations=1)
-    stdout('filter done', True)
+    stdout('filter done')
     cv2.imwrite(dst_path, dst)
-    stdout(f'output to {dst_path}', True)
-    stdout('---end---', True)
+    stdout(f'output to {dst_path}')
+    stdout('---end---')
     stdout(dst_path, False)
 
 
