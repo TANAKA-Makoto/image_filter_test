@@ -40,7 +40,7 @@ else:
     dst_name = os.path.basename(img_path)
     dst_folder = args.append_dst
     namelist = dst_name.split(".")
-    dst_name = f'{namelist[0]}-G({windowX},{windowY},{sigmaX},{sigmaY}).{namelist[1]}'
+    dst_name = f'{".".join(namelist[0:-1])}-G({windowX},{windowY},{sigmaX},{sigmaY}).{namelist[-1]}'
     dst_path = dst_folder + dst_name
 
 

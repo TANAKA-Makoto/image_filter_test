@@ -9,7 +9,7 @@ parser = argparse.ArgumentParser()
 group = parser.add_mutually_exclusive_group()
 if sys.stdin.isatty():
     parser.add_argument("img_path", type=str)
-parser.add_argument("angle", type=int)
+parser.add_argument("angle", type=float)
 parser.add_argument("--cmd", help="optional", action="store_false")
 group.add_argument("--append_dst", type=str)
 group.add_argument("--normal_dst", type=str)
@@ -28,7 +28,7 @@ else:
     dst_name = os.path.basename(img_path)
     dst_folder = args.append_dst
     namelist = dst_name.split(".")
-    dst_name = f'{namelist[0]}-R({angle}).{namelist[1]}'
+    dst_name = f'{".".join(namelist[0:-1])}-R({angle}).{namelist[-1]}'
     dst_path = dst_folder + dst_name
 
 
