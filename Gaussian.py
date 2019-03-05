@@ -9,13 +9,13 @@ parser = argparse.ArgumentParser()
 group = parser.add_mutually_exclusive_group()
 if sys.stdin.isatty():
     parser.add_argument("img_path", type=str)
+parser.add_argument("window", type=int)
+parser.add_argument("sigma", type=int)
 group.add_argument("--append_dst", type=str)
 group.add_argument("--normal_dst", type=str)
 parser.add_argument("--cmd", help="optional", action="store_false")
-parser.add_argument("--window", type=int)
 parser.add_argument("--windowX", type=int)
 parser.add_argument("--windowY", type=int)
-parser.add_argument("--sigma", type=int)
 parser.add_argument("--sigmaX", type=int)
 parser.add_argument("--sigmaY", type=int)
 
@@ -26,17 +26,13 @@ if hasattr(args, 'img_path'):
 else:
     img_path = sys.stdin.readline()[:-1]
 
-windowX = windowY = args.window if args.window else None
+windowX = windowY = args.window
 windowX = args.windowX if args.windowX else windowX
 windowY = args.windowY if args.windowY else windowY
-sigmaX = sigmaY = args.sigma if args.sigma else None
+sigmaX = sigmaY = args.sigma
 sigmaX = args.sigmaX if args.sigmaX else sigmaX
 sigmaY = args.sigmaY if args.sigmaY else sigmaY
 
-windowX = windowX if windowX is not None else 101
-windowY = windowY if windowY is not None else 101
-sigmaX = sigmaX if sigmaX is not None else 20
-sigmaY = sigmaY if sigmaY is not None else 20
 cmd = bool(args.cmd)
 if args.normal_dst:
     dst_path = args.normal_dst

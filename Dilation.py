@@ -9,10 +9,10 @@ parser = argparse.ArgumentParser()
 group = parser.add_mutually_exclusive_group()
 if sys.stdin.isatty():
     parser.add_argument("img_path", type=str)
+parser.add_argument("kernel", type=int)
 group.add_argument("--append_dst", type=str)
 group.add_argument("--normal_dst", type=str)
 parser.add_argument("--cmd", help="optional", action="store_false")
-parser.add_argument("--kernel", type=int)
 parser.add_argument("--kernelX", type=int)
 parser.add_argument("--kernelY", type=int)
 
@@ -22,11 +22,10 @@ if hasattr(args, 'img_path'):
 else:
     img_path = sys.stdin.readline()[:-1]
 
-kernelX = kernelY = args.kernel if args.kernel else None
+kernelX = kernelY = args.kernel
 kernelX = args.kernelX if args.kernelX else kernelX
 kernelY = args.kernelY if args.kernelY else kernelY
-kernelX = kernelX if kernelX is not None else 5
-kernelY = kernelY if kernelY is not None else 5
+
 cmd = bool(args.cmd)
 
 if args.normal_dst:
