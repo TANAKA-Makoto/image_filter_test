@@ -22,5 +22,20 @@ require either `--append_dst` or `--normal_dst`.
 #### option
 + --kernelX <int>
 + --kernelY <int>
-## Rotation
+### Rotation
 `./Rotation.py 'source_path' angle<double> (--append_dst|--normal_dst)`
+
+## Tips
+### Filter and Parameters append name
+using `--append_dst` , the value behavior like prefix. and script append there filter name and parameters after source file name.
+```
+# ./Erosion.py '~/img/test.png' 3 --append_dst '~/img/'
+~/img/test-E(3,3).png
+```
+### pipe line with standard I/O
+useing `--cmd`, script standard output becomes only output file name.
+so you can use pipe line.
+```
+# ./Erosion.py '~/img/test.png' 3 --append_dst '~/img/' --cmd | ./Dilation.py 3 --append_dst '~/img/' --cmd 
+~/img/test-E(3,3)-D(3,3).png
+```
